@@ -8,8 +8,9 @@ const server = http.createServer((req, res) => {
     if (req.url == "/about") {
         res.end("Hello from about")
     }
-
-    res.end("hello from server ")
+    if(req.url=='/'){
+        res.end("Hello from home page")
+    }
 })
 
 
