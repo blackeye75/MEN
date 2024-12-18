@@ -26,7 +26,7 @@ const app = express();
 app.set("view engine",'ejs')
 
 app.get('/', (req, res) => {
-    res.send('Response form Home page');
+    res.render('index');
 })
 
 app.get('/about', (req, res) => {
