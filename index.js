@@ -20,7 +20,7 @@
 // })
 
 
-const express = require("express")
+const express = require("express")                       //3 types of middleware a)inbuild b)third
 const morgan = require('morgan')
 
 const app = express();
@@ -40,14 +40,18 @@ app.set("view engine", 'ejs')
 // })
 
 
-app.get('/', (req, res, next) => { 
-    const a =5;
-    const b =9;
+// app.get('/', (req, res, next) => { 
+//     const a =5;
+//     const b =9;
+//     console.log(a+b);                                      //middleware for specific route
+//     next();
 
-    console.log(a+b);
-    next();
-    
-}, (req, res) => {
+// }, (req, res) => {
+//     res.render('index');
+// })
+
+
+app.get('/', (req, res) => {
     res.render('index');
 })
 
