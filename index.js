@@ -63,6 +63,11 @@ app.get('/profile', (req, res) => {
     res.send("Response from profile page");
 })
 
+app.get('/get-form-data', (req, res) => {
+    console.log(req.query);
+    res.send("data recived")
+})
+
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
 })
