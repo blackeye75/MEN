@@ -21,7 +21,7 @@
 
 
 const express = require("express")
-const morgan=require('morgan')
+const morgan = require('morgan')
 
 const app = express();
 app.use(morgan('dev'))                                   //third party middlewareF
@@ -40,7 +40,14 @@ app.set("view engine", 'ejs')
 // })
 
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => { 
+    const a =5;
+    const b =9;
+
+    console.log(a+b);
+    next();
+    
+}, (req, res) => {
     res.render('index');
 })
 
