@@ -21,20 +21,23 @@
 
 
 const express = require("express")
+const morgan=require('morgan')
+
 const app = express();
+app.use(morgan('dev'))                                   //third party middlewareF
 
 app.set("view engine", 'ejs')
 
-app.use((req, res, next) => {
-    console.log("This is middleware");
+// app.use((req, res, next) => {
+//     console.log("This is middleware");
 
-    const a = 5;
-    const b = 5;
-    const c = a + b;
-    console.log(c);
-    return next();
+//     const a = 5;
+//     const b = 5;                                       //custom middleware
+//     const c = a + b;
+//     console.log(c);
+//     return next();
 
-})
+// })
 
 
 app.get('/', (req, res) => {
@@ -52,3 +55,4 @@ app.get('/profile', (req, res) => {
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
 })
+
