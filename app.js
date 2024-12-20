@@ -39,6 +39,9 @@ app.use(express.urlencoded({ extended: true }))           // This middleware is 
 
 app.use(express.static('public'))                          //This middleware is used to serve static files.  //build in middleware
 
+const userModel=require('./models/user')
+
+
 // app.use((req, res, next) => {
 //     console.log("This is middleware");
 
