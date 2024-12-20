@@ -1,3 +1,6 @@
+//*******************************************// http server
+
+
 // const http = require('http')
 
 // const server = http.createServer((req, res) => {
@@ -20,13 +23,21 @@
 // })
 
 
+
+
 const express = require("express")                       //3 types of middleware a)inbuild b)third
 const morgan = require('morgan')
 
 const app = express();
-app.use(morgan('dev'))                                   //third party middlewareF
+app.use(morgan('dev'))                                   //third party middleware
 
-app.set("view engine", 'ejs')
+app.set("view engine", 'ejs')                              //set view engine for ejs
+
+app.use(express.json())                                     //This middleware is used to parse JSON payloads.      //both are build in midleware
+app.use(express.urlencoded({ extended: true }))           // This middleware is used to parse URL-encoded payloads. 
+
+
+app.use(express.static('public'))                          //This middleware is used to serve static files.  //build in middleware
 
 // app.use((req, res, next) => {
 //     console.log("This is middleware");
@@ -63,8 +74,8 @@ app.get('/profile', (req, res) => {
     res.send("Response from profile page");
 })
 
-app.get('/get-form-data', (req, res) => {
-    console.log(req.query);
+app.post('/get-form-data', (req, res) => {
+    console.log(req.body);                                  //by defalut express does not parse the form data so we have to use body-parser
     res.send("data recived")
 })
 
