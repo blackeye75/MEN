@@ -79,6 +79,10 @@ app.get('/profile', (req, res) => {
     res.send("Response from profile page");
 })
 
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
 app.post('/get-form-data', (req, res) => {
     console.log(req.body);                                  //by defalut express does not parse the form data so we have to use body-parser
     res.send("data recived")
