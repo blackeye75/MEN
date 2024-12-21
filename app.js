@@ -23,6 +23,9 @@
 // })
 
 
+//*******************************************// express server
+
+
 
 
 const express = require("express")                       //3 types of middleware a)inbuild b)third
@@ -39,9 +42,9 @@ app.use(express.urlencoded({ extended: true }))           // This middleware is 
 
 app.use(express.static('public'))                          //This middleware is used to serve static files.  //build in middleware
 
-const userModel=require('./models/user')
+const userModel = require('./models/user')
 
-const dbConnection = require('./config/db')               
+const dbConnection = require('./config/db')
 
 
 // app.use((req, res, next) => {
@@ -81,6 +84,36 @@ app.get('/profile', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render('register')
+})
+
+app.post('/register', async (req, res) => {
+    const { username, email, password } = req.body;
+
+    const neWuser = await userModel.create({
+        username: username,
+        email: email,                                                           //create new user
+        password: password
+    })
+    // console.log(user);
+    res.send(neWuser);
+})
+
+app.get('/get-users', async (req, res) => {
+    // const users = await userModel.find();                              //read all users      
+    // res.render('users', { users: users });
+    await userModel.find({ username: "temp1" }).then((users) => {      //find specific user  //we can use findone also to find only one user if 2 user have same username then it will return first one.it will return null if user not found but find will return empty array even if user not found empty array will be returned
+        res.send(users);
+    })
+})
+
+app.get("/update", async (req, res) => {
+    await userModel.findOneAndUpdate({ username: "temp1" }, { email: "pp@p.com" })   //update user
+    res.send("User updated");
+})
+
+app.get("/delete", async (req, res) => {
+    await userModel.findOneAndDelete({ username: "temp1" })  //delete user
+    res.send("User deleted");
 })
 
 app.post('/get-form-data', (req, res) => {
