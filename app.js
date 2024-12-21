@@ -41,6 +41,8 @@ app.use(express.static('public'))                          //This middleware is 
 
 const userModel=require('./models/user')
 
+const dbConnection = require('./config/db')               
+
 
 // app.use((req, res, next) => {
 //     console.log("This is middleware");
